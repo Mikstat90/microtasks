@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import {MouseEvent} from 'react';
+import {Button} from "./components/Button";
 
 
 /*const topCars = [
@@ -23,12 +24,16 @@ function App() {
         console.log(name)
     }*/
 
-    const foo1 = () => {
-        console.log(100200)
+    const Button1Foo = (subscriber: string, age: number) => {
+        console.log(subscriber, age)
     }
 
-    const foo2 = (figure: number) => {
-        console.log(figure)
+    const Button2Foo = (subscriber: string, age: number) => {
+        console.log(subscriber, age)
+    }
+
+    const Button3Foo = () => {
+        console.log('Im stupid button')
     }
 
     return (
@@ -38,8 +43,9 @@ function App() {
             {/*<button onClick={() => onClickHandler('Dima')}>MyYoutubeChanel-1</button>
             <button onClick={() => onClickHandler('Ivan')}>MyYoutubeChanel-2</button>*/}
 
-            <button onClick={foo1}>1</button>
-            <button onClick={() => foo2(100200)}>2</button>
+            <Button name={'YouTubeChanel-1'} callBack={() => Button1Foo('Im Dima', 33)}/>
+            <Button name={'YouTubeChanel-2'} callBack={() => Button2Foo('Im Mira', 6)}/>
+            <Button name={'YouTubeChanel-3'} callBack={Button3Foo}/>
         </div>
     );
 }
