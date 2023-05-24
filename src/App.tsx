@@ -44,6 +44,11 @@ function App() {
         console.log(a)
     }
 
+    const onClickHandler2 = () => {
+        setA(0)
+        console.log(a)
+    }
+
     return (
         <div>
             {/*<button onClick={(event)=>{console.log("Hello")}}>MyYoutubeChanel-1</button>*/}
@@ -57,6 +62,7 @@ function App() {
 
             <h1>{a}</h1>
             <button onClick={onClickHandler}>number</button>
+            <button onClick={onClickHandler2}>0</button>
         </div>
     );
 }
