@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {MouseEvent} from 'react';
 import {Button} from "./components/Button";
+import {NewComponent} from "./NewComponent";
 
 
 /*const topCars = [
@@ -9,6 +10,8 @@ import {Button} from "./components/Button";
     {manufacturer: 'Mercedes', model: 'e63s'},
     {manufacturer: 'Audi', model: 'rs6'},
 ]*/
+
+export type FilterType = 'all' | 'dollar' | 'ruble'
 
 function App() {
 
@@ -60,20 +63,22 @@ function App() {
         {banknote: 'ruble', nominal: 50, number: 'v1234567890'},
     ])
 
+    const [filter, setFilter] = useState<FilterType>('all')
+
     let currentMoney = money
 
-    const onClickFilterHandler = (name: string) => {
-        if (name==='dollar') {
-            currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === 'dollar')
-        } else if (name==='ruble') {
-            currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === 'ruble')
-        } else if (name==='all') {
-            currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === 'all')
-        }
+    if (filter === 'dollar') {
+        currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === 'dollar')
+    } else if (filter === 'ruble') {
+        currentMoney = money.filter((filteredMoney) => filteredMoney.banknote === 'ruble')
+    }
+    const onClickFilterHandler = (name: FilterType) => {
+        setFilter(name)
     }
 
     return (
         <>
+            <NewComponent money={currentMoney} callback={onClickFilterHandler}/>
             {/*<button onClick={(event)=>{console.log("Hello")}}>MyYoutubeChanel-1</button>*/}
             {/*<button onClick={myFirstSubscriber}>MyYoutubeChanel-1</button>*/}
             {/*<button onClick={() => onClickHandler('Dima')}>MyYoutubeChanel-1</button>
@@ -86,7 +91,7 @@ function App() {
             {/*<h1>{a}</h1>
             <button onClick={onClickHandler1}>number</button>
             <button onClick={onClickHandler2}>0</button>*/}
-            <ul>
+            {/*<ul>
                 {currentMoney.map((objectFromMoneyArr, index) => {
                     return (
                         <li key={index}>
@@ -100,9 +105,9 @@ function App() {
 
             <div style={{marginLeft: '50px'}}>
                 <button onClick={() => onClickFilterHandler('all')}>all</button>
-                <button onClick={() => onClickFilterHandler('ruble')}>ruble</button>
-                <button onClick={() => onClickFilterHandler('dollar')}>dollar</button>
-            </div>
+                <button onClick={() => onClickFilterHandler('ruble')}>rubles</button>
+                <button onClick={() => onClickFilterHandler('dollar')}>dollars</button>
+            </div>*/}
         </>
     );
 }
